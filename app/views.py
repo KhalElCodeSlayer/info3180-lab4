@@ -8,11 +8,13 @@ import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash, session, abort
 from werkzeug.utils import secure_filename
+from .forms import UploadForm
 
 
 ###
 # Routing for your application.
 ###
+
 
 @app.route('/')
 def home():
@@ -32,14 +34,17 @@ def upload():
         abort(401)
 
     # Instantiate your form class
-
+    form = UploadForm()
+    if request.method == 'GET':
+        return render_template('upload.html', form=form)
     # Validate file upload on submit
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate():
         # Get file data and save to your uploads folder
-
+        image = request.files['image']
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File Saved', 'success')
         return redirect(url_for('home'))
-
     return render_template('upload.html')
 
 
