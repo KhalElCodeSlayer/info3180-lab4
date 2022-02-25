@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div>
+    {% for upload in uploads %}
+    <ol>
+        <li>
+            <img class = "images" src = "{{url_for('get_image', filename=upload)}}">
+        </li>
+    </ol>
+    {% endfor %}
+</div>
+{% endblock %}
