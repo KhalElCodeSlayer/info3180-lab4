@@ -54,6 +54,7 @@ def get_uploaded_images():
     for subdir, dirs, files in os.walk(rootdir + '/uploads'):
         for file in files:
             imglst.append(file)
+    imglst.pop(0)
     return imglst
 
 @app.route('/uploads/<filename>')

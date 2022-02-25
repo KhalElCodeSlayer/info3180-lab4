@@ -1,3 +1,16 @@
 body {
     padding-top: 5rem;
 }
+
+.specific-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 500px;
+    height: 400px;
+}
+
+.img-layout{
+    display:grid;
+    grid-gap:20px;
+    grid-template-columns: auto auto auto;
+}
